@@ -1,4 +1,10 @@
 spring:
+  security:
+    user:
+      name: admin
+      password: 1234
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
   datasource:
     url: jdbc:mysql://mysql-container:3306/feedback_db?createDatabaseIfNotExist=true
     username: root
