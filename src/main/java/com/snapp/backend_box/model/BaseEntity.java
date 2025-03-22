@@ -15,5 +15,17 @@ public abstract class BaseEntity {
     @Column(name = "created_at",nullable = false,updatable = false)
     private LocalDateTime created;
     @Column(name = "updated_at",nullable = false)
-    private LocalDateTime update;
+    private LocalDateTime updated;
+
+
+    @PrePersist
+    protected void onCreate() {
+        this.created = LocalDateTime.now();
+        this.updated = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated = LocalDateTime.now();
+    }
 }

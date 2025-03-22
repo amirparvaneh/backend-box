@@ -1,10 +1,7 @@
 package com.snapp.backend_box.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "biker")
+@EqualsAndHashCode(callSuper = false)
 public class Biker extends BaseEntity{
     private String firstName;
     private String lastName;
@@ -22,5 +20,6 @@ public class Biker extends BaseEntity{
     private String email;
     private Integer averageRating;
     @OneToMany(mappedBy = "biker",cascade = CascadeType.ALL)
+    @Builder.Default
     private List<Delivery> deliveries = new ArrayList<>();
 }

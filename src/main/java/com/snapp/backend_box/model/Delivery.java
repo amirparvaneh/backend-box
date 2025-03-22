@@ -1,10 +1,7 @@
 package com.snapp.backend_box.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Table(name = "delivery")
+@EqualsAndHashCode(callSuper = false)
 public class Delivery extends BaseEntity {
     private LocalDateTime deliveryDate;
     @ManyToOne(fetch = FetchType.LAZY)

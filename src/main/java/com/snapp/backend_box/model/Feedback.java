@@ -2,10 +2,7 @@ package com.snapp.backend_box.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Table(name = "feedback")
+@EqualsAndHashCode(callSuper = false)
 public class Feedback extends BaseEntity{
     @Column(nullable = false)
     private int rating;
