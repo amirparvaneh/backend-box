@@ -10,3 +10,11 @@ Before building the Docker image, compile your project:
 Then build the Docker image:
 ### 2 docker build -t backend_box .
 ### 3 docker-compose up --build
+
+
+docker run -d \
+--name mysql-local \
+-p 3306:3306 \
+-e MYSQL_ROOT_PASSWORD=rootpassword \
+-e MYSQL_DATABASE=feedback_db \
+mysql

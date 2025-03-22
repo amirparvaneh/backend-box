@@ -6,7 +6,7 @@ spring:
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
   datasource:
-    url: jdbc:mysql://mysql-container:3306/feedback_db?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/feedback_db?createDatabaseIfNotExist=true
     username: root
     password: rootpassword
     driver-class-name: com.mysql.cj.jdbc.Driver
