@@ -1,10 +1,8 @@
 spring:
-  application:
-    name: backend_box
   datasource:
-    url: jdbc:mysql://localhost:3306/feedback_db?useSSL=false&serverTimezone=UTC
-    username: mysql_user
-    password: mysql_password
+    url: jdbc:mysql://mysql-container:3306/feedback_db?createDatabaseIfNotExist=true
+    username: root
+    password: rootpassword
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -12,4 +10,9 @@ spring:
     show-sql: false
     properties:
       hibernate:
-        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  application:
+    name: backend_box
+
+server:
+  port: 8080
