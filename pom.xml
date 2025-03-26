@@ -28,8 +28,8 @@
     </scm>
     <properties>
         <java.version>22</java.version>
-        <org.project.lombok-version>1.18.30</org.project.lombok-version>
-        <org.mapstruct-version>1.5.2.Final</org.mapstruct-version>
+        <org.project.lombok-version>1.18.32</org.project.lombok-version>
+        <org.mapstruct-version>1.6.3</org.mapstruct-version>
     </properties>
     <dependencies>
         <dependency>
@@ -112,25 +112,20 @@
                     </excludes>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
                 <configuration>
-                    <source>22</source>
-                    <target>22</target>
-                    <encoding>UTF-8</encoding>
                     <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${org.project.lombok-version}</version>
-                        </path>
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
-                            <version>${org.mapstruct-version}</version>
+                            <version>1.6.3</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.32</version>
                         </path>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -138,13 +133,9 @@
                             <version>0.2.0</version>
                         </path>
                     </annotationProcessorPaths>
-                    <compilerArgs>
-                        <compilerArg>
-                            -Amapstruct.defaultComponentModel=spring
-                        </compilerArg>
-                    </compilerArgs>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
