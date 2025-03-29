@@ -20,4 +20,6 @@ public class Manager extends BaseEntity{
     private String userName;
     @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
+    private String role;
 }

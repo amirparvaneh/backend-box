@@ -7,12 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeliveryOutputDto implements Serializable {
-
+public class FeedBackOutput implements Serializable {
 }
