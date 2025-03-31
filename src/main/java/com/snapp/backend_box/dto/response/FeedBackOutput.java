@@ -12,4 +12,5 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FeedBackOutput implements Serializable {
+    private int rating;
 }
