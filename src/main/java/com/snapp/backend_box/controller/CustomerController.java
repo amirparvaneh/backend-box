@@ -19,6 +19,12 @@ public class CustomerController {
     private final CustomerService customerService;
 
 
+    @PostMapping
+    public ResponseEntity<CustomerOutputDto> add(@RequestBody CustomerInputDto customerInputDto){
+        CustomerOutputDto customerOutputDto = customerService.add(customerInputDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerOutputDto);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<CustomerOutputDto>> getAllCustomer(){
         List<CustomerOutputDto> allCustomer = customerService.getAllCustomer();
