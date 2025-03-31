@@ -21,5 +21,5 @@ public class Manager extends BaseEntity{
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    private String role;
+    private String role = "ROLE_MANAGER";
 }
