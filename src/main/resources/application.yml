@@ -13,6 +13,9 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
   application:
     name: backend_box
+  sql:
+    init:
+      mode: never
 
 server:
   port: 8080
