@@ -4,6 +4,7 @@ package com.snapp.backend_box.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +16,12 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    private final String SECRET_KEY = "00001111";
-    private final long EXPIRATION_TIME = 1000 * 60 * 60 * 10;
+
+    @Value("${security.jwt.secret-key}")
+    private String SECRET_KEY;
+
+    @Value("${security.jwt.expiration-time}")
+    private long EXPIRATION_TIME;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -41,7 +46,7 @@ public class JwtUtil {
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role", userDetails.getAuthorities()); // Include roles in token
+        claims.put("role", userDetails.getAuthorities());
         return createToken(claims, userDetails.getUsername());
     }
 

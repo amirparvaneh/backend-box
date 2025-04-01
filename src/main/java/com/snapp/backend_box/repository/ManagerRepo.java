@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ManagerRepo extends JpaRepository<Manager,Long> {
-    Manager findByUserName(String userName);
+    Manager findByUsername(String userName);
 }

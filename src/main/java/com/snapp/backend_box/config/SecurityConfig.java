@@ -34,6 +34,7 @@ public class SecurityConfig {
                                 "/api/auth/login").permitAll()
                         .requestMatchers("/api/feedback/submit").hasRole("CUSTOMER")
                         .requestMatchers("/api/manager/**").hasRole("MANAGER")
+                        .requestMatchers("/api/biker/**").hasRole("BIKER")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

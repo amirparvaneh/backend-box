@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BikerRepo extends JpaRepository<Biker,Long> {
+    Biker findByEmail(String email);
 }

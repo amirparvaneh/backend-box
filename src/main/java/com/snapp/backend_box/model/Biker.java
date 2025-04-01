@@ -19,6 +19,9 @@ public class Biker extends BaseEntity{
     @Column(nullable = false,unique = true)
     private String email;
     private Integer averageRating;
+    @Column(nullable = false)
+    private String role = "ROLE_BIKER";
+    private String password;
     @OneToMany(mappedBy = "biker",cascade = CascadeType.ALL)
     @Builder.Default
     private List<Delivery> deliveries = new ArrayList<>();

@@ -17,9 +17,9 @@ public class Manager extends BaseEntity{
     private String firstName;
     private String lastName;
     @Column(nullable = false,unique = true)
-    private String userName;
+    private String username;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    private String role;
+    private String role = "ROLE_MANAGER";
 }
