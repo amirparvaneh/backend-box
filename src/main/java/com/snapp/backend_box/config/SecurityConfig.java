@@ -31,10 +31,10 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
                                 "/swagger-resources",
-                                "/api/auth/login").permitAll()
-                        .requestMatchers("/api/feedback/submit").hasRole("CUSTOMER")
-                        .requestMatchers("/api/manager/**").hasRole("MANAGER")
-                        .requestMatchers("/api/biker/**").hasRole("BIKER")
+                                "/api/auth/**").permitAll()
+                        .requestMatchers("/api/feedbacks/submit").hasRole("CUSTOMER")
+                        .requestMatchers("/api/managers/**").hasRole("MANAGER")
+                        .requestMatchers("/api/bikers/**").hasRole("BIKER")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
