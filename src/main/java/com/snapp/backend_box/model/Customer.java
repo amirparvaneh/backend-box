@@ -24,6 +24,4 @@ public class Customer extends BaseEntity {
     private List<Delivery> deliveries = new ArrayList<>();
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private String role = "ROLE_CUSTOMER";
 }
