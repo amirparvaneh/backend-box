@@ -29,4 +29,9 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = mapper.customerDtoToCustomer(customerInputDto);
         return mapper.customerToCustomerOutputDot(customerRepo.save(customer));
     }
+
+    @Override
+    public Customer findByEmail(String email) {
+        return customerRepo.findByEmail(email);
+    }
 }
