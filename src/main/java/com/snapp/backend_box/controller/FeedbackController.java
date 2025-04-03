@@ -42,7 +42,7 @@ public class FeedbackController {
             return ResponseEntity.status(401).body("JWT token required");
         }
 
-        String token = authHeader.substring(7); // Remove "Bearer "
+        String token = authHeader.substring(7);
         String email = jwtUtil.extractEmail(token);
         Customer customer = customerService.findByEmail(email);
 

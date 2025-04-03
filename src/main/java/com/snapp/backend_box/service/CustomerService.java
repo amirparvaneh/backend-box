@@ -10,4 +10,5 @@ public interface CustomerService {
     List<CustomerOutputDto> getAllCustomer();
     CustomerOutputDto add(CustomerInputDto customerInputDto);
     Customer findByEmail(String email);
+    void deleteById(Long id);
 }

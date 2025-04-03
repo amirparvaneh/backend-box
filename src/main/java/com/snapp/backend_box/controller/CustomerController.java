@@ -33,4 +33,10 @@ public class CustomerController {
         List<CustomerOutputDto> allCustomer = customerService.getAllCustomer();
         return ResponseEntity.ok(allCustomer);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        customerService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("the entity have been deleted");
+    }
 }
