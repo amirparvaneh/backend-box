@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 @Table(name = "feedback")
 @EqualsAndHashCode(callSuper = false)
 public class Feedback extends BaseEntity{
+    @Column(nullable = false,unique = true)
+    private String code;
     @Column(nullable = false)
     private int rating;
     @Column(columnDefinition = "TEXT")

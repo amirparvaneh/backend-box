@@ -9,4 +9,5 @@ public interface FeedbackService {
 
     List<FeedBackOutput> getAll();
     Feedback save(Feedback feedback);
+    Feedback findByCode(String code);
 }

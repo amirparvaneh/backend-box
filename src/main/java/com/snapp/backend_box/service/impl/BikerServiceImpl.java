@@ -38,4 +38,10 @@ public class BikerServiceImpl implements BikerService {
                 new NotFoundException("this biker is not available", HttpStatus.NOT_FOUND,id));
         bikerRepo.delete(biker);
     }
+
+    @Override
+    public Biker findByEmail(String email) {
+         return bikerRepo.findByEmail(email).orElseThrow(()->
+                 new NotFoundException("no biker found with this email",HttpStatus.NOT_FOUND,email));
+    }
 }

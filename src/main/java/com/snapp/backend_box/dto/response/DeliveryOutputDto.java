@@ -1,10 +1,7 @@
 package com.snapp.backend_box.dto.response;
 
 
-import com.snapp.backend_box.model.Biker;
-import com.snapp.backend_box.model.Customer;
-import com.snapp.backend_box.model.Feedback;
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +16,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DeliveryOutputDto implements Serializable {
+    private String customerEmail;
+    private String bikerEmail;
+    private String feedbackCode;
     private LocalDateTime deliveryDate;
 }

@@ -1,12 +1,12 @@
 package com.snapp.backend_box.controller;
 
+import com.snapp.backend_box.dto.request.DeliveryInputDto;
 import com.snapp.backend_box.dto.response.DeliveryOutputDto;
 import com.snapp.backend_box.service.DeliveryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +16,12 @@ import java.util.List;
 public class DeliveryController {
 
     private final DeliveryService deliveryService;
+
+    @PostMapping
+    public ResponseEntity<DeliveryOutputDto> add(@RequestBody DeliveryInputDto deliveryInputDto){
+        DeliveryOutputDto addedDelivery = deliveryService.add(deliveryInputDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(addedDelivery);
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<DeliveryOutputDto>> getAllDelivery() {

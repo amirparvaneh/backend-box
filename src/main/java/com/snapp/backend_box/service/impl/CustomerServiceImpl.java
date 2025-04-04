@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -43,7 +42,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findByEmail(String email) {
-        return customerRepo.findByEmail(email);
+         return customerRepo.findByEmail(email).orElseThrow(()->
+                 new NotFoundException("not found customer with this email",HttpStatus.NOT_FOUND,email));
     }
 
     @Override
