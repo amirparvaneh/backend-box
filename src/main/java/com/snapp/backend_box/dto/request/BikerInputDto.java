@@ -1,6 +1,5 @@
 package com.snapp.backend_box.dto.request;
 
-
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,13 +10,12 @@ import java.io.Serializable;
 
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerInputDto implements Serializable {
+@Builder
+public class BikerInputDto implements Serializable {
     private String firstName;
     private String lastName;
     @Email
     private String email;
-    private String password;
 }

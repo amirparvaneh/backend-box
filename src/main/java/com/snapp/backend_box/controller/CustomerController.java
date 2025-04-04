@@ -6,6 +6,7 @@ import com.snapp.backend_box.dto.request.CustomerLoginRequest;
 import com.snapp.backend_box.dto.response.CustomerOutputDto;
 import com.snapp.backend_box.model.Customer;
 import com.snapp.backend_box.service.CustomerService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class CustomerController {
 
 
     @PostMapping
-    public ResponseEntity<CustomerOutputDto> add(@RequestBody CustomerInputDto customerInputDto){
+    public ResponseEntity<CustomerOutputDto> add(@RequestBody @Valid CustomerInputDto customerInputDto){
         CustomerOutputDto customerOutputDto = customerService.add(customerInputDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(customerOutputDto);
     }
