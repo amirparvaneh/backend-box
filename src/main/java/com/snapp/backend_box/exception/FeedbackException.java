@@ -11,6 +11,13 @@ public class FeedbackException extends BusinessException{
                 HttpStatus.BAD_REQUEST,
                 code
         ));
+    }
 
+    public FeedbackException(String message,HttpStatus httpStatus,Integer rate){
+        super(new ErrorResponse(
+                "not.valid.rate",
+                HttpStatus.BAD_REQUEST,
+                rate
+        ));
     }
 }

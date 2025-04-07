@@ -34,13 +34,14 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     @Override
     public List<DeliveryOutputDto> getAll() {
-        return null;
+        List<Delivery> all = deliveryRepo.findAll();
+        return deliveryMapper.deliveryToListDto(all);
     }
 
     @Override
     public Delivery findById(Long id) {
-        return deliveryRepo.findById(id).orElseThrow(()->
-                new NotFoundException("delivery not found with this id", HttpStatus.NOT_FOUND,id));
+        return deliveryRepo.findById(id).orElseThrow(() ->
+                new NotFoundException("delivery not found with this id", HttpStatus.NOT_FOUND, id));
     }
 
     @Override
@@ -53,7 +54,7 @@ public class DeliveryServiceImpl implements DeliveryService {
                 .biker(biker)
                 .deliveryDate(LocalDateTime.now())
                 .build();
-        if (Objects.nonNull(feedback)){
+        if (Objects.nonNull(feedback)) {
             delivery.setFeedback(feedback);
         }
         deliveryRepo.save(delivery);

@@ -11,6 +11,6 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class FeedBackOutput implements Serializable {
+public class FeedbackOutput implements Serializable {
     private int rating;
 }
