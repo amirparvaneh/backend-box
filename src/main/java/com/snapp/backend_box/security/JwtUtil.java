@@ -5,7 +5,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -22,6 +21,8 @@ public class JwtUtil {
 
     @Value("${security.jwt.expiration-time}")
     private long EXPIRATION_TIME;
+
+    private final String TOKEN_PREFIX = "Bearer ";
 
     public String generateToken(String email) {
         Map<String, Object> claims = new HashMap<>();
@@ -54,5 +55,29 @@ public class JwtUtil {
 
     private boolean isTokenExpired(String token) {
         return extractClaim(token, Claims::getExpiration).before(new Date());
+    }
+
+
+    public String extractTokenFromHeader(String authHeader) {
+        if (authHeader == null || !authHeader.startsWith(TOKEN_PREFIX)) {
+            throw new IllegalArgumentException("Authorization header must start with 'Bearer '");
+        }
+        return authHeader.substring(TOKEN_PREFIX.length());
+    }
+
+    public Claims validateAndParseToken(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(SECRET_KEY)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    public String extractEmailFromClaims(Claims claims) {
+        String email = claims.getSubject();
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email missing in token claims");
+        }
+        return email;
     }
 }

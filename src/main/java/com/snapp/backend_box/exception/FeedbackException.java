@@ -20,4 +20,12 @@ public class FeedbackException extends BusinessException{
                 rate
         ));
     }
+
+    public FeedbackException(String message,HttpStatus httpStatus,String email){
+        super(new ErrorResponse(
+                "not.authorized.user",
+                HttpStatus.BAD_REQUEST,
+                email
+        ));
+    }
 }
