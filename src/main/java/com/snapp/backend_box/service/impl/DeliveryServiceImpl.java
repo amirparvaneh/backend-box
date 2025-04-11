@@ -8,19 +8,19 @@ import com.snapp.backend_box.mapper.DeliveryMapper;
 import com.snapp.backend_box.model.Biker;
 import com.snapp.backend_box.model.Customer;
 import com.snapp.backend_box.model.Delivery;
-import com.snapp.backend_box.model.Feedback;
 import com.snapp.backend_box.repository.DeliveryRepo;
 import com.snapp.backend_box.service.BikerService;
 import com.snapp.backend_box.service.CustomerService;
 import com.snapp.backend_box.service.DeliveryService;
-import com.snapp.backend_box.service.FeedbackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
+
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +29,6 @@ public class DeliveryServiceImpl implements DeliveryService {
     private final DeliveryRepo deliveryRepo;
     private final CustomerService customerService;
     private final BikerService bikerService;
-    private final FeedbackService feedbackService;
     private final DeliveryMapper deliveryMapper;
 
     @Override
@@ -46,7 +45,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     @Override
     public DeliveryOutputDto add(DeliveryInputDto deliveryInputDto) {
-        Feedback feedback = feedbackService.findByCode(deliveryInputDto.getFeedbackCode());
         Customer customer = customerService.findByEmail(deliveryInputDto.getCustomerEmail());
         Biker biker = bikerService.findByEmail(deliveryInputDto.getBikerEmail());
         Delivery delivery = Delivery.builder()
@@ -54,10 +52,11 @@ public class DeliveryServiceImpl implements DeliveryService {
                 .biker(biker)
                 .deliveryDate(LocalDateTime.now())
                 .build();
-        if (Objects.nonNull(feedback)) {
-            delivery.setFeedback(feedback);
-        }
-        deliveryRepo.save(delivery);
-        return deliveryMapper.deliveryToDto(delivery);
+        Delivery addedDelivery = deliveryRepo.save(delivery);
+        return deliveryMapper.deliveryToDto(addedDelivery);
+//        return DeliveryOutputDto.builder()
+//                .deliveryDate(addedDelivery.getDeliveryDate())
+//                .customerEmail(customer.getEmail())
+//                .bikerEmail(biker.getEmail()).build();
     }
 }

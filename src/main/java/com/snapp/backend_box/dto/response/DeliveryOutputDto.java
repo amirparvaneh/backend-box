@@ -18,6 +18,5 @@ import java.time.LocalDateTime;
 public class DeliveryOutputDto implements Serializable {
     private String customerEmail;
     private String bikerEmail;
-    private String feedbackCode;
     private LocalDateTime deliveryDate;
 }
