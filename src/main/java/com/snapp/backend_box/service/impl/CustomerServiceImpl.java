@@ -24,6 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepo customerRepo;
     private final CustomerMapper mapper;
     private final PasswordEncoder passwordEncoder;
+    private final CustomerValidation customerValidation;
 
     @Override
     public List<CustomerOutputDto> getAllCustomer() {
@@ -33,6 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerOutputDto add(CustomerInputDto customerInputDto) {
         String encode = passwordEncoder.encode(customerInputDto.getPassword());
+        customerValidation.validDuplicateCustomer(customerInputDto.getEmail());
         Customer customer = mapper.customerDtoToCustomer(customerInputDto);
         customer.setPassword(encode);
         log.info("this is the password "+customer.getPassword());

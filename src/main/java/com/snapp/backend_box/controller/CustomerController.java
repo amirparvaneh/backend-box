@@ -22,7 +22,6 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-
     @PostMapping
     public ResponseEntity<CustomerOutputDto> add(@RequestBody @Valid CustomerInputDto customerInputDto){
         CustomerOutputDto customerOutputDto = customerService.add(customerInputDto);
