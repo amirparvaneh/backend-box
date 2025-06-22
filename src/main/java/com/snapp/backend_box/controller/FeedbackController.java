@@ -31,21 +31,22 @@ public class FeedbackController {
         return ResponseEntity.ok(all);
     }
 
+
     @PostMapping("/submit")
     public ResponseEntity<?> submitFeedback(
             @RequestBody FeedbackRequest feedbackRequest,
             @RequestHeader(value = "Authorization", required = false) String authHeader) {
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            return ResponseEntity.status(401).body("JWT token required");
-        }
-        String token = authHeader.substring(7);
-        String email = jwtUtil.extractEmail(token);
-        Customer customer = customerService.findByEmail(email);
-        if (customer == null || !jwtUtil.validateToken(token, email)) {
-            return ResponseEntity.status(401).body("Invalid or expired JWT");
-        }
-        FeedbackOutput savedFeedback = deliveryFeedbackFacade.save(feedbackRequest,authHeader);
-        return ResponseEntity.status(201).body(savedFeedback);
+//        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+//            return ResponseEntity.status(401).body("JWT token required");
+//        }
+//        String token = authHeader.substring(7);
+//        String email = jwtUtil.extractEmail(token);
+//        Customer customer = customerService.findByEmail(email);
+//        if (customer == null || !jwtUtil.validateToken(token, email)) {
+//            return ResponseEntity.status(401).body("Invalid or expired JWT");
+//        }
+//        FeedbackOutput savedFeedback = deliveryFeedbackFacade.save(feedbackRequest,authHeader);
+//        return ResponseEntity.status(201).body(savedFeedback);
     }
 
 }
